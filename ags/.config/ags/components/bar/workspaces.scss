@@ -1,0 +1,19 @@
+@use "../../theme";
+
+.workspaces {
+  background-color: theme.$base;
+  padding: 5px 10px;
+  border-radius: 9999px;
+
+  .bubble {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 9999px;
+
+    background-color: theme.$primary;
+
+    .active {
+      background-color: yellow;
+    }
+  }
+}

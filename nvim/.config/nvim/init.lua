@@ -1,0 +1,6 @@
+require('config.opts')
+require('config.lazy')
+require('config.lsp')
+require('config.autocmd')
+require('config.remap')
+require('config.theme')

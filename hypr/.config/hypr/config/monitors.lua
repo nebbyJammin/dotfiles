@@ -1,0 +1,8 @@
+---@diagnostic disable: undefined-global
+
+hl.monitor({
+  output   = "",
+  mode     = "2560x1440@165",
+  position = "auto",
+  scale    = 1,
+})
