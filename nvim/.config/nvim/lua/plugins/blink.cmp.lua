@@ -4,7 +4,7 @@ return {
     "saghen/blink.lib",
     'rafamadriz/friendly-snippets',
   },
-  build = function() require("blink.cmp").build():pwait() end, ---@diagnostic disable-line
+  version = "1.*",
   opts = {
     keymap = { preset = 'default' },
 
