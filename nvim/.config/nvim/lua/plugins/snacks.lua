@@ -48,6 +48,13 @@ return {
     },
     picker = {
       enabled = true,
+      layouts = {
+        sidebar = {
+          layout = {
+            position = "right"
+          }
+        }
+      },
       sources = {
         explorer = {
           hidden = true,
