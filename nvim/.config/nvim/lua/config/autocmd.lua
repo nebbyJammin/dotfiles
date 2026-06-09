@@ -17,27 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
-
-    -- Auto Format
-    if client:supports_method('textDocument/formatting') then
-      local format_group = vim.api.nvim_create_augroup("my.lsp.format" .. event.buf, { clear = false })
-
-      vim.api.nvim_clear_autocmds({ group = format_group, buffer = event.buf })
-
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = format_group,
-        buffer = event.buf,
-        callback = function()
-          vim.lsp.buf.format({
-            bufnr = event.buf,
-            id = client.id,
-            timeout_ms = 5000
-          })
-        end,
-      })
-    end
-
     map("gd", vim.lsp.buf.definition, "Go to Definition")
     map("K", vim.lsp.buf.hover, "Hover Documentation")
     map("<leader>vws", vim.lsp.buf.workspace_symbol, "View Workspace Symbol")
