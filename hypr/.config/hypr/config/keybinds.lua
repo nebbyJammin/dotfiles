@@ -4,6 +4,7 @@
 local terminal    = "kitty"
 local fileManager = "nemo"
 local menu        = "wofi"
+local webBrowser  = "firefox"
 
 local mainMod     = "SUPER" -- Sets "Windows" key as main modifier
 
@@ -13,6 +14,7 @@ local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close()
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(webBrowser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu .. " --show run"))
