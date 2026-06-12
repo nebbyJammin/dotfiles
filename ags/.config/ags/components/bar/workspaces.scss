@@ -2,16 +2,16 @@
 
 .workspaces {
   background-color: theme.$base;
-  padding: 5px 10px;
+  padding: 9px 15px;
   border-radius: 9999px;
-  outline: 1px solid theme.$primary;
+  outline: 2px solid theme.$primary;
 
   .bubble {
-    min-width: 8px;
-    min-height: 8px;
+    min-width: 10px;
+    min-height: 10px;
     border-radius: 9999px;
 
-    background-color: theme.$primary;
+    background-color: theme.$inactive-ws;
 
     &.wg-1 {
       background-color: theme.$wg1;
@@ -50,7 +50,7 @@
     }
 
     &.active {
-      background-color: theme.$secondary;
+      background-color: theme.$active-ws;
     }
   }
 }

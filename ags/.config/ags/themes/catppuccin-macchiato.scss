@@ -35,12 +35,15 @@ $tertiary: $ctp-rosewater;
 
 $base: $ctp-base;
 
-$wg1: $ctp-lavender;
-$wg2: $ctp-lavender;
-$wg3: $ctp-lavender;
-$wg4: $ctp-lavender;
-$wg5: $ctp-lavender;
-$wg6: $ctp-lavender;
-$wg7: $ctp-lavender;
-$wg8: $ctp-lavender;
-$wg9: $ctp-lavender;
+
+$inactive-ws: $ctp-lavender;
+$active-ws: $ctp-red;
+$wg1: $inactive-ws;
+$wg2: $inactive-ws;
+$wg3: $inactive-ws;
+$wg4: $inactive-ws;
+$wg5: $inactive-ws;
+$wg6: $inactive-ws;
+$wg7: $inactive-ws;
+$wg8: $inactive-ws;
+$wg9: $inactive-ws;

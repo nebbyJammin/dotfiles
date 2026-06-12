@@ -6,7 +6,7 @@ const NUM_WORKSPACES = [10, 2];
 
 export default function Bar() {
   return (
-    <box $type={"center"} spacing={10} >
+    <box $type={"center"} spacing={12} >
       {NUM_WORKSPACES.map((curr, i, arr) => 
         <BubbleGroup
           prev={i === 0 ? 0 : arr[i-1]}
@@ -46,6 +46,6 @@ function WorkspaceBubble({ workspaceId, groupId }: WorkspaceBubbleArgs) {
   });
 
   return (
-    <box cssClasses={bubbleCssClasses} widthRequest={5} heightRequest={5}></box>
+    <box cssClasses={bubbleCssClasses} />
   )
 }
