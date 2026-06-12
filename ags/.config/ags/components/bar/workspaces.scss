@@ -4,6 +4,7 @@
   background-color: theme.$base;
   padding: 5px 10px;
   border-radius: 9999px;
+  outline: 1px solid theme.$primary;
 
   .bubble {
     min-width: 8px;
@@ -12,8 +13,44 @@
 
     background-color: theme.$primary;
 
-    .active {
-      background-color: yellow;
+    &.wg-1 {
+      background-color: theme.$wg1;
+    }
+
+    &.wg-2 {
+      background-color: theme.$wg2;
+    }
+
+    &.wg-3 {
+      background-color: theme.$wg3;
+    }
+
+    &.wg-4 {
+      background-color: theme.$wg4;
+    }
+
+    &.wg-5 {
+      background-color: theme.$wg5;
+    }
+
+    &.wg-6 {
+      background-color: theme.$wg6;
+    }
+
+    &.wg-7 {
+      background-color: theme.$wg7;
+    }
+
+    &.wg-8 {
+      background-color: theme.$wg8;
+    }
+
+    &.wg-9 {
+      background-color: theme.$wg9;
+    }
+
+    &.active {
+      background-color: theme.$secondary;
     }
   }
 }

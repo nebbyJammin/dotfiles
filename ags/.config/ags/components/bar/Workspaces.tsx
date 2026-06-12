@@ -2,16 +2,27 @@ import { createBinding } from "ags";
 import { Astal, Gtk, Gdk } from "ags/gtk4";
 import Hyprland from "gi://AstalHyprland";
 
-const num_workspaces = 7;
+const NUM_WORKSPACES = [10, 2];
 
 export default function Bar() {
+  return (
+    <box $type={"center"} spacing={10} >
+      {NUM_WORKSPACES.map((curr, i, arr) => 
+        <BubbleGroup
+          prev={i === 0 ? 0 : arr[i-1]}
+          numWorkspaces={curr}
+          groupId={i+1}
+        />
+      )}
+    </box>
+  )
+}
 
-  const hyprland = Hyprland.get_default();
-
+function BubbleGroup({prev, numWorkspaces, groupId}: {prev: number, numWorkspaces: number, groupId: number}) {
   return (
     <box $type={"center"} cssClasses={["workspaces"]} spacing={10} >
-      {Array.from({ length: num_workspaces }, (_, i) => (
-        <WorkspaceBubble workspaceId={i} />
+      {Array.from({ length: numWorkspaces }, (_, j) => (
+        <WorkspaceBubble workspaceId={prev + j+1} groupId={groupId} />
       ))}
     </box>
   )
@@ -19,20 +30,19 @@ export default function Bar() {
 
 interface WorkspaceBubbleArgs {
   workspaceId: number;
+  groupId: number;
 }
 
-function WorkspaceBubble({ workspaceId }: WorkspaceBubbleArgs) {
+function WorkspaceBubble({ workspaceId, groupId }: WorkspaceBubbleArgs) {
   const hyprland = Hyprland.get_default();
+  const activeWorkspaceId = createBinding(hyprland, "focusedWorkspace").as(ws => ws?.id);
 
-  const client = createBinding(hyprland, "focusedClient")
-  const bubbleCssClasses = client.as(fw => {
-    const classes = ["bubble"];
-
-    if (fw?.get_workspace().id === workspaceId) {
+  const bubbleCssClasses = activeWorkspaceId.as(activeId => {
+    const classes = ["bubble", `wg-${groupId}`];
+    if (activeId === workspaceId) {
       classes.push("active");
     }
-
-    return classes
+    return classes;
   });
 
   return (
