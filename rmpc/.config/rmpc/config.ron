@@ -7,7 +7,7 @@
     extra_yt_dlp_args: ["--cookies-from-browser=firefox"],
     password: None,
 
-    theme: "catppuccin_mocha",
+    theme: "catppuccin_macchiato",
     on_song_change: None,
     volume_step: 5,
     max_fps: 120,
