@@ -26,6 +26,16 @@ Next you may want to install some optional dependencies and configure these pack
     - Register mpd as a user service using `systemctl --user enable --now mpd`
 - rmpc / mpd-yt-autodownloader
     - Download songs using mpd-yt-autodownloader-v2 TODO: Rewrite in python
+- keyd (installed via pacman) for overriding keyboard input (probably don't need this for desktop)
+    - Create a `/etc/keyd/default.conf` with:
+    - ```
+      [ids]
+      *
+
+      [main]
+      capslock = overload(control, esc)
+      ```
+    - Run `sudo systemctl enable --now keyd`
 
 ### Installing
 
