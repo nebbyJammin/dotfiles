@@ -41,4 +41,9 @@ else
   export EDITOR='nvim'
 fi
 
+# direnv hook
+eval "$(direnv hook zsh)"
+# Firefox force legacy x11
+export MOZ_ENABLE_WAYLAND=0
+
 fastfetch
