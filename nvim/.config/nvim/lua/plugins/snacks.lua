@@ -147,10 +147,10 @@ return {
     { "<leader>gf",      function() Snacks.picker.git_log_file() end,                            desc = "Git Log File" },
 
     -- gh
-    { "<leader>gi",      function() Snacks.picker.gh_issue() end,                                desc = "GitHub Issues (open)" },
-    { "<leader>gI",      function() Snacks.picker.gh_issue({ state = "all" }) end,               desc = "GitHub Issues (all)" },
-    { "<leader>gp",      function() Snacks.picker.gh_pr() end,                                   desc = "GitHub Pull Requests (open)" },
-    { "<leader>gP",      function() Snacks.picker.gh_pr({ state = "all" }) end,                  desc = "GitHub Pull Requests (all)" },
+    { "<leader>ghio",      function() Snacks.picker.gh_issue() end,                                desc = "GitHub Issues (open)" },
+    { "<leader>ghia",      function() Snacks.picker.gh_issue({ state = "all" }) end,               desc = "GitHub Issues (all)" },
+    { "<leader>ghpo",      function() Snacks.picker.gh_pr() end,                                   desc = "GitHub Pull Requests (open)" },
+    { "<leader>ghpa",      function() Snacks.picker.gh_pr({ state = "all" }) end,                  desc = "GitHub Pull Requests (all)" },
 
     -- grep
     { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
@@ -185,7 +185,7 @@ return {
     { "gd",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
     { "gD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
     { "<leader>vrr",     function() Snacks.picker.lsp_references() end,                          nowait = true,                       desc = "References" },
-    { "gI",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
+    { "gi",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
     { "gy",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
     { "gai",             function() Snacks.picker.lsp_incoming_calls() end,                      desc = "C[a]lls Incoming" },
     { "gao",             function() Snacks.picker.lsp_outgoing_calls() end,                      desc = "C[a]lls Outgoing" },

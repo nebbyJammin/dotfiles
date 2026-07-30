@@ -17,13 +17,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    map("gd", vim.lsp.buf.definition, "Go to Definition")
     map("K", vim.lsp.buf.hover, "Hover Documentation")
-    map("<leader>vws", vim.lsp.buf.workspace_symbol, "View Workspace Symbol")
     map("<leader>vd", vim.diagnostic.open_float, "Open Diagnostic Float")
     map("]d", vim.diagnostic.get_next, "Go to Next")
     map("[d", vim.diagnostic.get_prev, "Go to Previous")
-    map("<leader>vrr", vim.lsp.buf.references, "List All References")
     map("<leader>vrn", vim.lsp.buf.rename, "Rename All References")
     map("<leader>h", vim.lsp.buf.signature_help, "Signature Help")
     map("<leader>ca", vim.lsp.buf.code_action, "View Code Actions")
