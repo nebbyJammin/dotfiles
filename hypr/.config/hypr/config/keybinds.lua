@@ -20,9 +20,16 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu .. " --show run"))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu .. " --show drun"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind("SUPER + SHIFT + R", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
+    hl.notification.create({
+        text = "Hyprland config reloaded!",
+        timeout = 2000
+    })
+end, { description = "Reload Hyprland config with notification" })
 
 -- Move focus with mainMod + hjkl
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }))
