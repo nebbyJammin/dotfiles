@@ -6,5 +6,5 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("waypaper --restore")
 
   -- AGS
-  hl.exec_once("ags run")
+  hl.exec_cmd("ags run")
 end)
