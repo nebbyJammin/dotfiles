@@ -21,6 +21,7 @@ zstyle ':omz:update' frequency 13
 # Note that zsh-syntax-highlighting must be the last plugin
 plugins=(
   git 
+  mise
   zsh-autosuggestions 
   zsh-syntax-highlighting
 )
