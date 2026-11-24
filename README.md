@@ -53,7 +53,9 @@ While in the dotfiles directory use `stow` to acquire a configuration file.
 stow -R <module_name>
 ```
 
-### Further Setup
+### Miscellaneous Setup
+
+Some further setup / fixes you may want to do.
 
 #### Docker blocked by systemd-networkd-wait-online.service
 
