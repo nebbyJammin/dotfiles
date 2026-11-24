@@ -18,7 +18,8 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(webBrowser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu .. " --show run"))
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu .. " --show drun"))
+-- Only allow one instance of drun to open
+hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("pkill " .. menu .. " || " ..  menu .. " --normal-window --show drun --alow-images"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
