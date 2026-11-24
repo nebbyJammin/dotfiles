@@ -52,3 +52,26 @@ While in the dotfiles directory use `stow` to acquire a configuration file.
 ```zsh
 stow -R <module_name>
 ```
+
+### Further Setup
+
+#### Docker blocked by systemd-networkd-wait-online.service
+
+```bash
+sudo systemctl edit systemd-networkd-wait-online.service
+```
+
+Wait for any interfaces to be available, not all of them.
+
+```
+[Service]
+ExecStart=
+ExecStart=/lib/systemd/systemd-networkd-wait-online --any
+```
+
+Mark unconnected interfaces as optional in `/etc/systemd/network/20-<interface>.network`.
+
+```
+[Link]
+RequiredForOnline=no
+```
