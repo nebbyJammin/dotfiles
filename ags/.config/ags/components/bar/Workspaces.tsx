@@ -1,28 +1,34 @@
-import { createBinding } from "ags";
-import { Astal, Gtk, Gdk } from "ags/gtk4";
+import { createBinding, createComputed } from "ags";
 import Hyprland from "gi://AstalHyprland";
 
-const NUM_WORKSPACES = [10, 2];
+const NUM_WORKSPACES = [5, 5, 2];
 
 export default function Bar() {
+  let offset = 0;
+
   return (
     <box $type={"center"} spacing={12} >
-      {NUM_WORKSPACES.map((curr, i, arr) => 
-        <BubbleGroup
-          prev={i === 0 ? 0 : arr[i-1]}
-          numWorkspaces={curr}
-          groupId={i+1}
-        />
-      )}
+      {NUM_WORKSPACES.map((curr, i) => {
+        const groupOffset = offset;
+        offset += curr
+
+        return (
+          <BubbleGroup
+            offset={groupOffset}
+            numWorkspaces={curr}
+            groupId={i+1}
+          />
+        )
+      })}
     </box>
   )
 }
 
-function BubbleGroup({prev, numWorkspaces, groupId}: {prev: number, numWorkspaces: number, groupId: number}) {
+function BubbleGroup({offset, numWorkspaces, groupId}: {offset: number, numWorkspaces: number, groupId: number}) {
   return (
     <box $type={"center"} cssClasses={["workspaces"]} spacing={10} >
       {Array.from({ length: numWorkspaces }, (_, j) => (
-        <WorkspaceBubble workspaceId={prev + j+1} groupId={groupId} />
+        <WorkspaceBubble workspaceId={offset + j+1} groupId={groupId} />
       ))}
     </box>
   )
@@ -33,19 +39,20 @@ interface WorkspaceBubbleArgs {
   groupId: number;
 }
 
-function WorkspaceBubble({ workspaceId, groupId }: WorkspaceBubbleArgs) {
-  const hyprland = Hyprland.get_default();
-  const activeWorkspaceId = createBinding(hyprland, "focusedWorkspace").as(ws => ws?.id);
+const hyprland = Hyprland.get_default();
 
-  const bubbleCssClasses = activeWorkspaceId.as(activeId => {
+const focusedId = createBinding(hyprland, "focusedWorkspace").as(ws => ws?.id);
+const clients = createBinding(hyprland, "clients");
+
+function WorkspaceBubble({ workspaceId, groupId }: WorkspaceBubbleArgs) {
+  const bubbleCssClasses = createComputed(() => {
     const classes = ["bubble", `wg-${groupId}`];
-    if (activeId === workspaceId) {
-      classes.push("active");
-    }
+
+    if (focusedId() === workspaceId) classes.push("active");
+    if (clients().some(c => c.workspace?.id === workspaceId)) classes.push("occupied");
+
     return classes;
   });
 
-  return (
-    <box cssClasses={bubbleCssClasses} />
-  )
+  return <box cssClasses={bubbleCssClasses} />;
 }
