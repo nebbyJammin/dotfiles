@@ -9,21 +9,24 @@ local webBrowser  = "firefox"
 local mainMod     = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal), { description = "Open terminal" })
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close(), { description = "Close window" })
 hl.bind(mainMod .. " + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(webBrowser))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu .. " --show run"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(webBrowser), { description = "Open web browser" })
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager), { description = "Open file manager" })
+hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }), { description = "Make window floating" })
 -- Only allow one instance of drun to open
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("pkill " .. menu .. " || " ..  menu .. " --normal-window --show drun --allow-images"))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mainMod .. " + space",
+  hl.dsp.exec_cmd("pkill " .. menu .. " || " .. menu .. " --normal-window --show drun --allow-images"),
+  { description = "Toggle open task launcher (menu)" })
+hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"), { description = "Switch split direction" }) -- dwindle only
+-- TODO: Show some sort of indicator when a window is fullscreened
+-- Currently it is not obvious if a window is maximized, or it is the only
+-- window in the workspace.
+-- hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }),
+  { description = "Fullscreen window" })
 hl.bind("SUPER + SHIFT + R", function()
   hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
   hl.notification.create({
@@ -33,7 +36,7 @@ hl.bind("SUPER + SHIFT + R", function()
 end, { description = "Reload Hyprland config with notification" })
 hl.bind("SUPER + SHIFT + S", function()
   hl.dispatch(hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
-end, { description = "Screenshot selection, like snipping tool"})
+end, { description = "Screenshot selection, like snipping tool" })
 
 -- Move focus with mainMod + hjkl
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }))
@@ -47,8 +50,6 @@ hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "u" }))
 hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "d" }))
 
 -- Workspace Binds
-hl.bind(mainMod .. " + escape", hl.dsp.focus({ workspace = 11 }))
-hl.bind(mainMod .. " + SHIFT + escape", hl.dsp.window.move({ workspace = 11}))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -57,6 +58,10 @@ for i = 1, 10 do
   hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
   hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
+
+-- Switch workspace + move active window on special workspaces
+hl.bind(mainMod .. " + escape", hl.dsp.focus({ workspace = 11 }))
+hl.bind(mainMod .. " + SHIFT + escape", hl.dsp.window.move({ workspace = 11 }))
 
 hl.bind(mainMod .. " + equal", hl.dsp.focus({ workspace = 12 }))
 hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = 12 }))
