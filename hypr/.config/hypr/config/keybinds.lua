@@ -30,7 +30,7 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen
 hl.bind("SUPER + SHIFT + R",
   -- Reload config, sleep 200ms (should be sufficient time) and check for errors.
   hl.dsp.exec_cmd(
-  [[hyprctl reload && sleep 0.2 && [ -z "$(hyprctl configerrors | tr -d '[:space:]')" ] && notify-send -t 3000 'Hyprland' 'Config reloaded!']]),
+    [[hyprctl reload && sleep 0.2 && [ -z "$(hyprctl configerrors | tr -d '[:space:]')" ] && notify-send -t 3000 'Hyprland' 'Config reloaded!']]),
   { description = "Reload Hyprland config, notify only if it loaded cleanly" })
 hl.bind("SUPER + SHIFT + S", function()
   hl.dispatch(hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
