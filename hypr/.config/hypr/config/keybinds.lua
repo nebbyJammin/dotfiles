@@ -25,12 +25,15 @@ hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind("SUPER + SHIFT + R", function()
-    hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
-    hl.notification.create({
-        text = "Hyprland config reloaded!",
-        timeout = 2000
-    })
+  hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
+  hl.notification.create({
+    text = "Hyprland config reloaded!",
+    timeout = 2000
+  })
 end, { description = "Reload Hyprland config with notification" })
+hl.bind("SUPER + SHIFT + S", function()
+  hl.dispatch(hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
+end, { description = "Screenshot selection, like snipping tool"})
 
 -- Move focus with mainMod + hjkl
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }))
