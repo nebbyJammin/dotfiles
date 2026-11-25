@@ -31,3 +31,12 @@ vim.keymap.set(
   ":noh<CR>",
   { noremap = true, silent = true }
 )
+
+-- format
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>f",
+  function ()
+    vim.lsp.buf.format({ async = true })
+  end, { desc = "Format buffer with LSP"}
+)
