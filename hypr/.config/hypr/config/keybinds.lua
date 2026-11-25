@@ -27,13 +27,11 @@ hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"), { description = "Switch
 -- hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }),
   { description = "Fullscreen window" })
-hl.bind("SUPER + SHIFT + R", function()
-  hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
-  hl.notification.create({
-    text = "Hyprland config reloaded!",
-    timeout = 2000
-  })
-end, { description = "Reload Hyprland config with notification" })
+hl.bind("SUPER + SHIFT + R",
+  -- Reload config, sleep 200ms (should be sufficient time) and check for errors.
+  hl.dsp.exec_cmd(
+  [[hyprctl reload && sleep 0.2 && [ -z "$(hyprctl configerrors | tr -d '[:space:]')" ] && notify-send -t 3000 'Hyprland' 'Config reloaded!']]),
+  { description = "Reload Hyprland config, notify only if it loaded cleanly" })
 hl.bind("SUPER + SHIFT + S", function()
   hl.dispatch(hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
 end, { description = "Screenshot selection, like snipping tool" })
